@@ -1,0 +1,94 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+.full-height{
+    height: 93vh;
+}
+.main-image{
+    margin-top: 30px;
+    max-width: 200px;
+    max-height: 200px;
+}
+.game-title{
+    font-family: 'Luckiest Guy', cursive;
+    margin: 30px 0px;
+    font-size: 50px;
+}
+.bottom-action{
+    padding: 0;
+    button{
+        border-radius: 0px;
+    } 
+}
+
+.card{
+    border-radius: 0;
+    padding: 10px;
+    border: none;
+    img{
+        max-width: 70%;
+        height: 120px;
+        margin: auto;
+    }
+    &.active{
+        background: #c3e0ff;
+    }
+    .card-text{
+        font-size: 12px;
+    }
+}
+
+.commands{
+    padding: 0;
+    li{
+        list-style: none;
+        margin-bottom: 10px;
+        background: #dee2e6;
+        padding: 5px;
+        text-align: center;
+        border-radius: 15px;
+        position: relative;
+        .delete{
+            position: absolute;
+            right: 0;
+            top: 3px;
+        }
+    }
+    li:after{
+        content:' ';
+        width: 2px;
+        background: #dee2e6;
+        height: 10px;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+    }
+    li.addcommand:after{
+        display: none;
+    }
+}
+
+$fadeLength: 1000ms; 
+.m-fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear $fadeLength, opacity $fadeLength;
+}
+.m-fadeIn {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity $fadeLength;
+}
+
+$popLength: 1000ms; 
+.m-popOut {
+  height: 0px;
+  opacity: 0;
+  display: none;
+  transition: height 0s ease $popLength, opacity $popLength;
+}
+.m-popIn {
+  height: inherit;
+  display: inherit;
+  opacity: 1;
+  transition: height 0s ease 0s, opacity $popLength;
+}
