@@ -14,10 +14,17 @@ export default {
     });
   },
   saveCharacter: (history, character) => {
-    history.push('/commands');
+    history.push('/level');
     AppDispatcher.dispatch({
       actionType: 'SAVE_CHARACTER',
       actionData: character
+    });
+  },
+  saveLevel: (history, level) => {
+    history.push('/commands');
+    AppDispatcher.dispatch({
+      actionType: 'SAVE_LEVEL',
+      actionData: level
     });
   },
   publishAttempt: (history, commands) => {
@@ -25,6 +32,7 @@ export default {
     let dataToSend = {
       username: GameStore.getUsername(),
       character: GameStore.getCharacter(),
+      level: parseInt(GameStore.getLevel()),
       commands: commands.map(function(item){
         return item.slug;
       })
@@ -33,12 +41,33 @@ export default {
       headers: { 'Content-Type': 'text/plain' }
     })
     .then(function (response) {
-      console.log("Request sent successfully",response);
-      history.push('/sent');
-      AppDispatcher.dispatch({
-        actionType: 'ATTEMPT_SAVED',
-        actionData: commands
-      });
+      if(response.data.code==200)
+      {
+        console.log("Request sent successfully",response);
+        history.push('/sent');
+        AppDispatcher.dispatch({
+          actionType: 'ATTEMPT_SAVED',
+          actionData: commands
+        });
+      }
+      else if(response.data.code!=200) alert(response.data.message);
+    })
+    .catch(function (error) {
+      console.log("Error in the request",error);
+    });
+    
+  },
+  getAvailableLevels: () => {
+    axios.get('https://assets.breatheco.de/apis/kill-the-bug/api/get_levels')
+    .then(function (response) {
+      if(response.data.code==200)
+      {
+        AppDispatcher.dispatch({
+          actionType: 'SAVE_AVAILABLE_LEVELS',
+          actionData: response.data.data
+        });
+      }
+      else console.log("Error in the request",response.data);
     })
     .catch(function (error) {
       console.log("Error in the request",error);

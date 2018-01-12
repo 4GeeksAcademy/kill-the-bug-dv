@@ -12,11 +12,23 @@
     font-family: 'Luckiest Guy', cursive;
     margin: 30px 0px;
     font-size: 50px;
+    position: relative;
+    &:after{
+        content: 'By 4Geeks Academy';
+        font-size: 12px;
+        font-family: sans-serif;
+        display: block;
+        position: absolute;
+        right: 40px;
+        top: 42px;
+        font-weight: 900;
+    }
 }
 .bottom-action{
     padding: 0;
     button{
         border-radius: 0px;
+        height: 70px;
     } 
 }
 
@@ -26,6 +38,11 @@
     border: none;
     img{
         max-width: 70%;
+        height: 120px;
+        margin: auto;
+    }
+    img.level{
+        max-width: 95%;
         height: 120px;
         margin: auto;
     }
@@ -62,8 +79,11 @@
         bottom: -10px;
         left: 50%;
     }
+    li.addcommand{
+        margin-bottom: 30px;
+    }
     li.addcommand:after{
-        display: none;
+        background: white;
     }
 }
 

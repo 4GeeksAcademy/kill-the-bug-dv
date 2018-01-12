@@ -10,6 +10,7 @@ export class CommandsSelect extends React.Component {
       
         super();
         this.state = {
+            errorMessage: null,
             availableCommands: GameStore.getAvailableCommands(),
             commands: [],
             toolbarOpened: false
@@ -50,12 +51,11 @@ export class CommandsSelect extends React.Component {
     }
     
     publishAttempt(){
-        GameActions.publishAttempt(this.props.history,this.state.commands);
+        if(this.state.commands.length>0) GameActions.publishAttempt(this.props.history,this.state.commands);
+        else this.setState({errorMessage: 'You have to add some commands to your algorithm before sending it'});
     }
     
     render(){
-        console.log(this.state.commands);
-        
         const commandsToRender = this.state.commands.map((command, index) => {
             return (<li key={index}>
                         {command.label}
@@ -73,8 +73,10 @@ export class CommandsSelect extends React.Component {
         });
         return(
             <div className="container-fluid pb-5">
+                &nbsp;
                 <h2 className="text-center">Build Your Code</h2>
                 <p className="text-center">Like the great coder he is, Rigoberto needs to find and kill the bug, help him!</p>
+                {(this.state.errorMessage) ? <p className="alert alert-danger">{this.state.errorMessage}</p> : '' }
                 <ul className="commands">
                     {commandsToRender}
                     <li onClick={()=>this.openToolbar()} className={"nav-item text-center addcommand bg-warning "+((this.state.toolbarOpened) ? 'm-fadeOut' : 'm-fadeIn')}>

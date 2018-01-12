@@ -31,7 +31,7 @@ export class Home extends React.Component {
                 <div className="row mt-5">
                     <div className="col-12">
                         <h6>Please enter a nickname to begin:</h6>
-                        <input type="text" className="form-control" placeholder="nickname" onChange={(evt) => this.setState({username: evt.target.value})} />
+                        <input pattern="[A-Za-z0-9]" onKeyDown={(evt) => { if(evt.keyCode==13) this.saveUsername(); }} type="text" className="form-control" placeholder="nickname" onChange={(evt) => this.setState({username: evt.target.value})} />
                         {(this.state.usernameError) ? <p className="alert alert-danger">Please enter a valid username</p> : '' }
                         <span>(Only letters and numbers allowed)</span>
                     </div>

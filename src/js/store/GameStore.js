@@ -7,6 +7,7 @@ class GameStore extends BaseStore {
     super();
     // First we register to the Dispatcher to listen for actions.
     this.subscribe(() => this._registerToActions.bind(this));
+    this._availableLevels = null;
     this._availableCommands = [
         {slug: "runRight", label: "Run Right", "icon": "arrow-right"}, 
         {slug: "runLeft", label: "Run Left", "icon": "arrow-left"}, 
@@ -20,6 +21,7 @@ class GameStore extends BaseStore {
     
     this._character = null;
     this._username = null;
+    this._level = null;
   }
 
   _registerToActions(action) {
@@ -36,11 +38,25 @@ class GameStore extends BaseStore {
           this._character = action.actionData;
         this.emitChange();
         break;
+      case 'SAVE_AVAILABLE_LEVELS':
+          this._availableLevels = action.actionData;
+        this.emitChange();
+        break;
+      case 'SAVE_LEVEL':
+          this._level = action.actionData;
+        this.emitChange();
+        break;
       default:
         break;
     };
   }
   
+  getAvailableLevels(){
+      return this._availableLevels;
+  }
+  getLevel(){
+    return this._level;
+  }
   getUsername(){
       return this._username;
   }

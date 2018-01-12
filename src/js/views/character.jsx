@@ -62,13 +62,14 @@ export class CharacterSelect extends React.Component {
             return <div key={character.slug} className={"card col-6 "+((this.state.selectedCharacter==character.slug)?'active':'')} onClick={() => this.setState({selectedCharacter: character.slug })}>
                         <img className="card-img-top img-fluid" src={'public/'+character.image} alt="Card image cap" />
                         <div className="card-body">
-                            <h5 className="card-title">{character.title}</h5>
+                            <h5 className="card-title text-center">{character.title}</h5>
                             <p className="card-text">{character.description}</p>
                         </div>
                     </div>;
         })
         return(
             <div className="container-fluid pb-5">
+                &nbsp;
                 <h2 className="text-center">Pick a character!</h2>
                 {(this.state.errorMessage) ? <p className="alert aler-danger">{this.state.errorMessage}</p>: ''}
                 <div className="row">
