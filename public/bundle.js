@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "10b0c4abe15195f056a1"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d12cfc5848f4abb7b18f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -38576,6 +38576,7 @@ var Layout = exports.Layout = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
 
+        _this.absolutePath = '/kill-the-bug/mobile';
         _GameActions2.default.getAvailableLevels();
         return _this;
     }
@@ -38593,11 +38594,11 @@ var Layout = exports.Layout = function (_React$Component) {
                     _react2.default.createElement(
                         _reactRouterDom.Switch,
                         null,
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home.Home }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/character', component: _character.CharacterSelect }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/level', component: _levels.LevelSelect }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/commands', component: _commands.CommandsSelect }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/sent', component: _sent.RequestSent }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/', component: _home.Home }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/character', component: _character.CharacterSelect }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/level', component: _levels.LevelSelect }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/commands', component: _commands.CommandsSelect }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/sent', component: _sent.RequestSent }),
                         _react2.default.createElement(_reactRouterDom.Route, { render: function render() {
                                 return _react2.default.createElement(
                                     'p',
@@ -44055,7 +44056,7 @@ var Home = exports.Home = function (_React$Component) {
                             null,
                             'Please enter a nickname to begin:'
                         ),
-                        _react2.default.createElement('input', { onKeyDown: function onKeyDown(evt) {
+                        _react2.default.createElement('input', { pattern: '[A-Za-z0-9]', onKeyDown: function onKeyDown(evt) {
                                 if (evt.keyCode == 13) _this2.saveUsername();
                             }, type: 'text', className: 'form-control', placeholder: 'nickname', onChange: function onChange(evt) {
                                 return _this2.setState({ username: evt.target.value });

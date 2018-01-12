@@ -14,7 +14,7 @@ export class Layout extends React.Component {
     constructor(){
         
         super();
-        
+        this.absolutePath = '/kill-the-bug/mobile';
         GameActions.getAvailableLevels();
     }
     
@@ -24,11 +24,11 @@ export class Layout extends React.Component {
             <div>
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path='/' component={Home} />
-                        <Route exact path='/character' component={CharacterSelect} />
-                        <Route exact path='/level' component={LevelSelect} />
-                        <Route exact path='/commands' component={CommandsSelect} />
-                        <Route exact path='/sent' component={RequestSent} />
+                        <Route exact path={this.absolutePath+'/'} component={Home} />
+                        <Route exact path={this.absolutePath+'/character'} component={CharacterSelect} />
+                        <Route exact path={this.absolutePath+'/level'} component={LevelSelect} />
+                        <Route exact path={this.absolutePath+'/commands'} component={CommandsSelect} />
+                        <Route exact path={this.absolutePath+'/sent'} component={RequestSent} />
                         <Route render={() => <p className="text-center mt-5">Not found</p>} />
                     </Switch>
                 </BrowserRouter>
