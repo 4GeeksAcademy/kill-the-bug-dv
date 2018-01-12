@@ -48,7 +48,7 @@ export class CharacterSelect extends React.Component {
     }
     
     componentDidMount(){
-        if(GameStore.getUsername() == null) this.props.history.push('/');
+        if(GameStore.getUsername() == null) this.props.history.push('/home');
     }
     
     sendCharacter(){

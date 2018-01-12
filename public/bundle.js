@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d12cfc5848f4abb7b18f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "aacef60d7231ed652d51"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -38576,7 +38576,6 @@ var Layout = exports.Layout = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
 
-        _this.absolutePath = '/kill-the-bug/mobile';
         _GameActions2.default.getAvailableLevels();
         return _this;
     }
@@ -38594,11 +38593,12 @@ var Layout = exports.Layout = function (_React$Component) {
                     _react2.default.createElement(
                         _reactRouterDom.Switch,
                         null,
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/', component: _home.Home }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/character', component: _character.CharacterSelect }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/level', component: _levels.LevelSelect }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/commands', component: _commands.CommandsSelect }),
-                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: this.absolutePath + '/sent', component: _sent.RequestSent }),
+                        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home.Home }),
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _home.Home }),
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/character', component: _character.CharacterSelect }),
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/level', component: _levels.LevelSelect }),
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/commands', component: _commands.CommandsSelect }),
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/sent', component: _sent.RequestSent }),
                         _react2.default.createElement(_reactRouterDom.Route, { render: function render() {
                                 return _react2.default.createElement(
                                     'p',
@@ -42354,7 +42354,7 @@ var CharacterSelect = exports.CharacterSelect = function (_React$Component) {
     _createClass(CharacterSelect, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            if (_GameStore2.default.getUsername() == null) this.props.history.push('/');
+            if (_GameStore2.default.getUsername() == null) this.props.history.push('/home');
         }
     }, {
         key: 'sendCharacter',
@@ -44156,7 +44156,7 @@ var LevelSelect = exports.LevelSelect = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            if (_GameStore2.default.getUsername() == null) this.props.history.push('/');
+            if (_GameStore2.default.getUsername() == null) this.props.history.push('/home');
             _GameStore2.default.on('change', function () {
                 _this2.setState({
                     selectedLevel: _GameStore2.default.getLevel(),
@@ -44295,8 +44295,8 @@ var CommandsSelect = exports.CommandsSelect = function (_React$Component) {
     _createClass(CommandsSelect, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            if (_GameStore2.default.getCharacter() == null) this.props.history.push('/');
-            if (_GameStore2.default.getUsername() == null) this.props.history.push('/');
+            if (_GameStore2.default.getCharacter() == null) this.props.history.push('/home');
+            if (_GameStore2.default.getUsername() == null) this.props.history.push('/home');
         }
     }, {
         key: 'enqueCommand',
@@ -44479,8 +44479,8 @@ var RequestSent = exports.RequestSent = function (_React$Component) {
     _createClass(RequestSent, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            if (_GameStore2.default.getCharacter() == null) this.props.history.push('/');
-            if (_GameStore2.default.getUsername() == null) this.props.history.push('/');
+            if (_GameStore2.default.getCharacter() == null) this.props.history.push('/home');
+            if (_GameStore2.default.getUsername() == null) this.props.history.push('/home');
         }
     }, {
         key: 'render',

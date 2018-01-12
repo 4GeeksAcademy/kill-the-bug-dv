@@ -18,7 +18,7 @@ export class LevelSelect extends React.Component {
     }
     
     componentDidMount(){
-        if(GameStore.getUsername() == null) this.props.history.push('/');
+        if(GameStore.getUsername() == null) this.props.history.push('/home');
         GameStore.on('change',()=>{
             this.setState({
                 selectedLevel: GameStore.getLevel(),

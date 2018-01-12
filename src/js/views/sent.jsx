@@ -16,8 +16,8 @@ export class RequestSent extends React.Component {
     }
     
     componentDidMount(){
-        if(GameStore.getCharacter() == null) this.props.history.push('/');
-        if(GameStore.getUsername() == null) this.props.history.push('/');
+        if(GameStore.getCharacter() == null) this.props.history.push('/home');
+        if(GameStore.getUsername() == null) this.props.history.push('/home');
     }
     
     render(){
