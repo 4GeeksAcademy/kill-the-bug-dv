@@ -14,7 +14,7 @@ export class Layout extends React.Component {
     constructor(){
         
         super();
-        this.absolutePath = '/kill-the-bug/mobile';
+        this.absolutePath = 'kill-the-bug/mobile';
         GameActions.getAvailableLevels();
     }
     
