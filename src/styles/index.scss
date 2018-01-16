@@ -108,7 +108,18 @@ $popLength: 1000ms;
 }
 .m-popIn {
   height: inherit;
-  display: inherit;
   opacity: 1;
   transition: height 0s ease 0s, opacity $popLength;
+}
+
+.navbar img{
+    max-width: 100%;
+    display: block;
+}
+.fa-arrow-up.arrow-right{
+    transform: rotate(45deg); /* Equal to rotateZ(45deg) */
+}
+
+.fa-arrow-up.arrow-left{
+    transform: rotate(-45deg); /* Equal to rotateZ(45deg) */
 }

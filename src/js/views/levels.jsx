@@ -11,7 +11,7 @@ export class LevelSelect extends React.Component {
         super();
         
         this.state = {
-            selectedLevel: GameStore.getLevel(),
+            selectedLevel: GameStore.getSelectedLevel(),
             errorMessage: null,
             levels: GameStore.getAvailableLevels()
         }
@@ -21,7 +21,7 @@ export class LevelSelect extends React.Component {
         if(GameStore.getUsername() == null) this.props.history.push('/home');
         GameStore.on('change',()=>{
             this.setState({
-                selectedLevel: GameStore.getLevel(),
+                selectedLevel: GameStore.getSelectedLevel(),
                 errorMessage: null,
                 levels: GameStore.getAvailableLevels()
             });
@@ -29,7 +29,7 @@ export class LevelSelect extends React.Component {
     }
     
     sendLevel(){
-        if(this.state.selectedLevel) GameActions.saveLevel(this.props.history,this.state.selectedLevel);
+        if(this.state.selectedLevel) GameActions.saveLevel(this.props.history,this.state.selectedLevel.slug);
         else this.setState({errorMessage: 'Please select a level'});
     }
     
@@ -38,8 +38,8 @@ export class LevelSelect extends React.Component {
         if(!this.state.levels || this.state.levels.length==0) return (<h2>Loading Levels...</h2>);
         
         const cards = this.state.levels.map((lvl)=>{
-            return <div key={lvl.slug} className={"card col-6 "+((this.state.selectedLevel==lvl.slug)?'active':'')} onClick={() => this.setState({selectedLevel: lvl.slug })}>
-                        <img className="card-img-top img-fluid level" src={'https://assets.breatheco.de/apis/kill-the-bug/'+lvl.thumb} alt="Card image cap" />
+            return <div key={lvl.slug} className={"card col-6 "+((this.state.selectedLevel && this.state.selectedLevel.slug==lvl.slug)?'active':'')} onClick={() => this.setState({selectedLevel: lvl })}>
+                        <img className="card-img-top img-fluid level" src={GameStore.getAssetsURL() + lvl.thumb} alt="Card image cap" />
                         <div className="card-body">
                             <h5 className="card-title text-center">{lvl.title}</h5>
                         </div>

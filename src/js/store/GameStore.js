@@ -9,14 +9,14 @@ class GameStore extends BaseStore {
     this.subscribe(() => this._registerToActions.bind(this));
     this._availableLevels = null;
     this._availableCommands = [
-        {slug: "runRight", label: "Run Right", "icon": "arrow-right"}, 
-        {slug: "runLeft", label: "Run Left", "icon": "arrow-left"}, 
-        {slug: "jumpRight", label: "Jump Right", "icon": "arrow-up"}, 
-        {slug: "jumpLeft", label: "Jump Left", "icon": "arrow-up"}, 
+        {slug: "runRight", label: "Right", "icon": "arrow-right"}, 
+        {slug: "runLeft", label: "Left", "icon": "arrow-left"}, 
+        {slug: "jumpRight", label: "Jump Right", "icon": "arrow-up arrow-right"}, 
+        {slug: "jumpLeft", label: "Jump Left", "icon": "arrow-up arrow-left"}, 
         {slug: "climb", label: "Climb", "icon": "level-up"}, 
         {slug: "open", label: "Open Door", "icon": "key"}, 
         {slug: "push", label: "Push", "icon": "hand-paper-o"}, 
-        {slug: "kill", label: "Kill Bug", "icon": "free-code-camp"}
+        {slug: "kill", label: "Kill", "icon": "free-code-camp"}
     ];
     
     this._character = null;
@@ -51,11 +51,21 @@ class GameStore extends BaseStore {
     };
   }
   
+  getAssetsURL(){
+    return 'https://assets.breatheco.de/apis/kill-the-bug/';
+  }
+  
   getAvailableLevels(){
       return this._availableLevels;
   }
-  getLevel(){
-    return this._level;
+  getSelectedLevel(){
+    
+    if(this._availableLevels == null) return null;
+    
+    for(var i = 0; i<this._availableLevels.length;i++){
+        if(this._availableLevels[i].slug == this._level) return this._availableLevels[i];
+    }
+    return null;
   }
   getUsername(){
       return this._username;

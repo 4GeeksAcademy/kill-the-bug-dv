@@ -19,6 +19,7 @@ export class Layout extends React.Component {
     
     render(){
         
+        //<BrowserRouter basename='/kill-the-bug/mobile'>
         return(
             <div>
                 <BrowserRouter basename='/kill-the-bug/mobile'>

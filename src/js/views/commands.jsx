@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import GameStore from '../store/GameStore.js';
 import GameActions from '../actions/GameActions.js';
@@ -13,6 +12,7 @@ export class CommandsSelect extends React.Component {
             errorMessage: null,
             availableCommands: GameStore.getAvailableCommands(),
             commands: [],
+            selectedLevel: GameStore.getSelectedLevel(),
             toolbarOpened: false
         };
           
@@ -21,6 +21,7 @@ export class CommandsSelect extends React.Component {
     componentDidMount(){
         if(GameStore.getCharacter() == null) this.props.history.push('/home');
         if(GameStore.getUsername() == null) this.props.history.push('/home');
+        if(GameStore.getSelectedLevel() == null) this.props.history.push('/home');
     }
     
     enqueCommand(commandKey){
@@ -44,7 +45,13 @@ export class CommandsSelect extends React.Component {
         });
     }
     
-    openToolbar(){
+    closeCommandBar(){
+        this.setState({
+            toolbarOpened: false
+        });
+    }
+    
+    openCommandBar(){
         this.setState({
             toolbarOpened: true
         });
@@ -73,20 +80,24 @@ export class CommandsSelect extends React.Component {
         });
         return(
             <div className="container-fluid pb-5">
-                &nbsp;
+                <p className='mr-auto'>&nbsp;</p>
                 <h2 className="text-center">Build Your Code</h2>
                 <p className="text-center">Like the great coder he is, Rigoberto needs to find and kill the bug, help him!</p>
                 {(this.state.errorMessage) ? <p className="alert alert-danger">{this.state.errorMessage}</p> : '' }
                 <ul className="commands">
                     {commandsToRender}
-                    <li onClick={()=>this.openToolbar()} className={"nav-item text-center addcommand bg-warning "+((this.state.toolbarOpened) ? 'm-fadeOut' : 'm-fadeIn')}>
+                    <li onClick={()=>this.openCommandBar()} className={"nav-item text-center addcommand bg-warning "+((this.state.toolbarOpened) ? 'm-fadeOut' : 'm-fadeIn')}>
                         Add New Command
                     </li>
                 </ul>
                 <nav className="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark bottom-action">
-                    <ul className={"nav justify-content-center "+((this.state.toolbarOpened) ? "m-popIn":"m-popOut")}>
-                        {aCommands}
-                    </ul>
+                    <div className={((this.state.toolbarOpened) ? "m-popIn":"m-popOut")}>
+                        {(this.state.selectedLevel) ? <img src={GameStore.getAssetsURL() + this.state.selectedLevel.thumb} /> : ''}
+                        <ul className={"nav justify-content-center "}>
+                            {aCommands}
+                        </ul>
+                        <button onClick={()=>this.closeCommandBar()} className="btn btn-danger btn-lg form-control"> Close Commands </button>
+                    </div>
                     <button onClick={()=>this.publishAttempt()} className="btn btn-primary btn-lg form-control"> Run My Code </button>
                 </nav>
             </div>
