@@ -21,7 +21,7 @@ export class Layout extends React.Component {
         
         return(
             <div>
-                <BrowserRouter>
+                <BrowserRouter basename='/kill-the-bug/mobile'>
                     <Switch>
                         <Route exact path='/' component={Home} />
                         <Route path='/home' component={Home} />

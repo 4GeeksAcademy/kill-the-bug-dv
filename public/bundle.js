@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "aacef60d7231ed652d51"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "50ecb998e26b8fca1d52"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -38589,7 +38589,7 @@ var Layout = exports.Layout = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                     _reactRouterDom.BrowserRouter,
-                    null,
+                    { basename: '/kill-the-bug/mobile' },
                     _react2.default.createElement(
                         _reactRouterDom.Switch,
                         null,
@@ -44415,7 +44415,7 @@ var CommandsSelect = exports.CommandsSelect = function (_React$Component) {
                         { onClick: function onClick() {
                                 return _this2.publishAttempt();
                             }, className: 'btn btn-primary btn-lg form-control' },
-                        ' Send My Algorithm '
+                        ' Run My Code '
                     )
                 )
             );

@@ -87,7 +87,7 @@ export class CommandsSelect extends React.Component {
                     <ul className={"nav justify-content-center "+((this.state.toolbarOpened) ? "m-popIn":"m-popOut")}>
                         {aCommands}
                     </ul>
-                    <button onClick={()=>this.publishAttempt()} className="btn btn-primary btn-lg form-control"> Send My Algorithm </button>
+                    <button onClick={()=>this.publishAttempt()} className="btn btn-primary btn-lg form-control"> Run My Code </button>
                 </nav>
             </div>
         );
