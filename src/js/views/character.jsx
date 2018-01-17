@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import RigoMilitar from '../../assets/img/militar.png';
-import RigoEinstein from '../../assets/img/einstein.png';
+import RigoBatman from '../../assets/img/batman.png';
 import RigoVader from '../../assets/img/vader.png';
-import RigoBaby from '../../assets/img/baby.png';
 
 import GameActions from '../actions/GameActions.js';
 import GameStore from '../store/GameStore.js';
@@ -20,28 +18,16 @@ export class CharacterSelect extends React.Component {
             errorMessage: null,
             characters: [
                 {
-                    slug: 'toddler',
-                    image: RigoBaby,
-                    title: 'Rigo Toddler',
-                    description: "Baby Rigo is new but don't undermine him, he is capable of great things! :)"
-                },
-                {
-                    slug: 'sargent',
-                    image: RigoMilitar,
-                    title: 'Sargent Rigo',
-                    description: "No one is more disciplined than Sargent Rigo!"
+                    slug: 'batman',
+                    image: RigoBatman,
+                    title: 'Rigo Wane',
+                    description: "An eccentric millionaire coder that is afraid of bats and has heavy mental issues."
                 },
                 {
                     slug: 'vader',
                     image: RigoVader,
                     title: 'Dark Rigo',
-                    description: "The best coder that ever existed, but its constantly fighting with its own self, making him weak."
-                },
-                {
-                    slug: 'einstein',
-                    image: RigoEinstein,
-                    title: 'Rigstain',
-                    description: "The most creative coder, defenetively a great contender"
+                    description: "The best coder that ever existed, a bad boy wannabe with a great heart inside, what makes him weak."
                 }
             ]
         }
