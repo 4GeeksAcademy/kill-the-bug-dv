@@ -49,7 +49,7 @@ export class LevelSelect extends React.Component {
             <div className="container-fluid pb-5">
                 &nbsp;
                 <h2 className="text-center">Pick the coding level!</h2>
-                {(this.state.errorMessage) ? <p className="alert aler-danger">{this.state.errorMessage}</p>: ''}
+                {(this.state.errorMessage) ? <p className="alert alert-danger">{this.state.errorMessage}</p>: ''}
                 <div className="row">
                     {cards}
                 </div>

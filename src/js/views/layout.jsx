@@ -6,6 +6,7 @@ import {Home} from './home.jsx';
 import {LevelSelect} from './levels.jsx';
 import {CommandsSelect} from './commands.jsx';
 import {RequestSent} from './sent.jsx';
+import {TheMenu} from './menu.jsx';
 
 import GameActions from '../actions/GameActions.js';
 
@@ -22,14 +23,15 @@ export class Layout extends React.Component {
         //<BrowserRouter basename='/kill-the-bug/mobile'>
         return(
             <div>
-                <BrowserRouter basename='/kill-the-bug/mobile'>
+                <BrowserRouter>
                     <Switch>
                         <Route exact path='/' component={Home} />
-                        <Route path='/home' component={Home} />
-                        <Route path='/character' component={CharacterSelect} />
-                        <Route path='/level' component={LevelSelect} />
-                        <Route path='/commands' component={CommandsSelect} />
-                        <Route path='/sent' component={RequestSent} />
+                        <Route exact path='/options' component={TheMenu} />
+                        <Route exact path='/home' component={Home} />
+                        <Route exact path='/character' component={CharacterSelect} />
+                        <Route exact path='/level' component={LevelSelect} />
+                        <Route exact path='/commands' component={CommandsSelect} />
+                        <Route exact path='/sent' component={RequestSent} />
                         <Route render={() => <p className="text-center mt-5">Not found</p>} />
                     </Switch>
                 </BrowserRouter>

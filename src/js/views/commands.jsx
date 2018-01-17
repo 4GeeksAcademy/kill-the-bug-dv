@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import GameStore from '../store/GameStore.js';
 import GameActions from '../actions/GameActions.js';
 
@@ -83,25 +85,28 @@ export class CommandsSelect extends React.Component {
         });
         return(
             <div className="container-fluid pb-5">
-                <p className='mr-auto'>&nbsp;</p>
+                <p className='text-center mt-3'><Link to="/home"><i className="fa fa-refresh" aria-hidden="true"></i>&nbsp;Back to start</Link></p>
                 <h2 className="text-center">Build Your Code</h2>
                 <p className="text-center">Like the great coder he is, Rigoberto needs to find and kill the bug, help him!</p>
                 {(this.state.errorMessage) ? <p className="alert alert-danger">{this.state.errorMessage}</p> : '' }
                 <ul className="commands">
                     {commandsToRender}
                     <li onClick={()=>this.openCommandBar()} className={"nav-item text-center addcommand bg-warning "+((this.state.toolbarOpened) ? 'm-fadeOut' : 'm-fadeIn')}>
-                        Add New Command
+                        <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                        &nbsp;Add New Command
                     </li>
                 </ul>
                 <nav className="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark bottom-action">
                     <div className={((this.state.toolbarOpened) ? "m-popIn":"m-popOut")}>
-                        {(this.state.selectedLevel) ? <img src={GameStore.getAssetsURL() + this.state.selectedLevel.thumb} /> : ''}
+                        {(this.state.selectedLevel) ? 
+                            (<img src={GameStore.getAssetsURL() + this.state.selectedLevel.thumb} />) 
+                        : ''}
                         <ul className={"nav justify-content-center "}>
                             {aCommands}
                         </ul>
-                        <button onClick={()=>this.closeCommandBar()} className="btn btn-danger btn-lg form-control"> Close Commands </button>
+                        <button onClick={()=>this.closeCommandBar()} className="btn btn-danger btn-lg form-control"> <i class="fa fa-times" aria-hidden="true"></i>&nbsp;Close Commands </button>
                     </div>
-                    <button onClick={()=>this.publishAttempt()} className="btn btn-primary btn-lg form-control"> Run My Code </button>
+                    <button onClick={()=>this.publishAttempt()} className={"btn btn-primary btn-lg form-control "+((!this.state.toolbarOpened) ? "m-popIn":"m-popOut")}> <i class="fa fa-play-circle-o" aria-hidden="true"></i>&nbsp;Run My Code </button>
                 </nav>
             </div>
         );
