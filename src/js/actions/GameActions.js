@@ -27,12 +27,12 @@ export default {
       actionData: level
     });
   },
-  publishAttempt: (history, commands) => {
+  publishAttempt: (history, commands, level) => {
     // Send the action to all stores through the Dispatcher
     let dataToSend = {
       username: GameStore.getUsername(),
       character: GameStore.getCharacter(),
-      level: parseInt(GameStore.getLevel()),
+      level: parseInt(level),
       commands: commands.map(function(item){
         return item.slug;
       })

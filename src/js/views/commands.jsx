@@ -58,7 +58,10 @@ export class CommandsSelect extends React.Component {
     }
     
     publishAttempt(){
-        if(this.state.commands.length>0) GameActions.publishAttempt(this.props.history,this.state.commands);
+        if(this.state.commands.length>0 && this.state.selectedLevel.slug) 
+        {
+            GameActions.publishAttempt(this.props.history,this.state.commands, this.state.selectedLevel.slug);
+        }
         else this.setState({errorMessage: 'You have to add some commands to your algorithm before sending it'});
     }
     

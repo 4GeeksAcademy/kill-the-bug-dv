@@ -61,7 +61,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a64ee1274f4d9bf095ba"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "f504e3d51eaed5e4cb43"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -1914,12 +1914,12 @@ exports.default = {
       actionData: level
     });
   },
-  publishAttempt: function publishAttempt(history, commands) {
+  publishAttempt: function publishAttempt(history, commands, level) {
     // Send the action to all stores through the Dispatcher
     var dataToSend = {
       username: _GameStore2.default.getUsername(),
       character: _GameStore2.default.getCharacter(),
-      level: parseInt(_GameStore2.default.getLevel()),
+      level: parseInt(level),
       commands: commands.map(function (item) {
         return item.slug;
       })
@@ -44350,7 +44350,9 @@ var CommandsSelect = exports.CommandsSelect = function (_React$Component) {
     }, {
         key: 'publishAttempt',
         value: function publishAttempt() {
-            if (this.state.commands.length > 0) _GameActions2.default.publishAttempt(this.props.history, this.state.commands);else this.setState({ errorMessage: 'You have to add some commands to your algorithm before sending it' });
+            if (this.state.commands.length > 0 && this.state.selectedLevel.slug) {
+                _GameActions2.default.publishAttempt(this.props.history, this.state.commands, this.state.selectedLevel.slug);
+            } else this.setState({ errorMessage: 'You have to add some commands to your algorithm before sending it' });
         }
     }, {
         key: 'render',
