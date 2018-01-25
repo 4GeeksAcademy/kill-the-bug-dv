@@ -26,7 +26,7 @@ export class RequestSent extends React.Component {
                 &nbsp;
                 <img className="main-image" src={'public/'+RigoCoder} />
                 <h4 className="text-center mt-5">Your commands where sent successfully!</h4>
-                <p mb-5 mt-5>All you have to do now is wait for the instructor to run your algorithm, let's see if you are a great coder!</p>
+                <p className="mt-5">All you have to do now is wait for the instructor to run your algorithm, let's see if you are a great coder!</p>
                 <div className="row">
                     <div className="col-12">
                         <Link to="/" className="btn btn-primary btn-lg form-control"> Play Again </Link>

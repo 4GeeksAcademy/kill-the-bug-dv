@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 import GameStore from '../store/GameStore.js';
@@ -67,6 +66,10 @@ export class CommandsSelect extends React.Component {
         else this.setState({errorMessage: 'You have to add some commands to your algorithm before sending it'});
     }
     
+    componentDidUpdate(){
+        window.scrollTo(0,document.body.scrollHeight);
+    }
+    
     render(){
         const commandsToRender = this.state.commands.map((command, index) => {
             return (<li key={index}>
@@ -77,7 +80,10 @@ export class CommandsSelect extends React.Component {
         
         const aCommands = this.state.availableCommands.map((acmd)=>{
            return (<li key={acmd.slug} className="nav-item text-center">
-                        <a className="nav-link active" href="#" onClick={() => this.enqueCommand(acmd.slug) }>
+                        <a className="nav-link active" href="#" onClick={(evt) => { 
+                            this.enqueCommand(acmd.slug);
+                            evt.preventDefault();
+                        }}>
                         <p><i className={"fa fa-"+acmd.icon} aria-hidden="true"></i></p>
                         {acmd.label}
                         </a>
@@ -104,9 +110,9 @@ export class CommandsSelect extends React.Component {
                         <ul className={"nav justify-content-center "}>
                             {aCommands}
                         </ul>
-                        <button onClick={()=>this.closeCommandBar()} className="btn btn-danger btn-lg form-control"> <i class="fa fa-times" aria-hidden="true"></i>&nbsp;Close Commands </button>
+                        <button onClick={()=>this.closeCommandBar()} className="btn btn-danger btn-lg form-control"> <i className="fa fa-times" aria-hidden="true"></i>&nbsp;Close Commands </button>
                     </div>
-                    <button onClick={()=>this.publishAttempt()} className={"btn btn-primary btn-lg form-control "+((!this.state.toolbarOpened) ? "m-popIn":"m-popOut")}> <i class="fa fa-play-circle-o" aria-hidden="true"></i>&nbsp;Run My Code </button>
+                    <button onClick={()=>this.publishAttempt()} className={"btn btn-primary btn-lg form-control "+((!this.state.toolbarOpened) ? "m-popIn":"m-popOut")}> <i className="fa fa-play-circle-o" aria-hidden="true"></i>&nbsp;Run My Code </button>
                 </nav>
             </div>
         );
