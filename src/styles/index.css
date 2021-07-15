@@ -1,0 +1,117 @@
+.full-height {
+    height: 93vh;
+}
+.main-image {
+    margin-top: 30px;
+    max-width: 200px;
+    max-height: 200px;
+}
+.game-title {
+    font-family: 'Luckiest Guy', cursive;
+    margin: 30px 0px;
+    font-size: 50px;
+    position: relative;
+}
+.game-title:after {
+    content: 'By 4Geeks Academy';
+    font-size: 12px;
+    font-family: sans-serif;
+    display: block;
+    position: absolute;
+    right: 40px;
+    top: 42px;
+    font-weight: 900;
+}
+.bottom-action {
+    padding: 0;
+}
+.bottom-action button {
+    border-radius: 0px;
+    height: 70px;
+}
+.card {
+    border-radius: 0;
+    padding: 10px;
+    border: none;
+}
+.card img {
+    max-width: 70%;
+    height: 120px;
+    margin: auto;
+}
+.card img.level {
+    max-width: 95%;
+    height: 120px;
+    margin: auto;
+}
+.card.active {
+    background: #c3e0ff;
+}
+.card .card-text {
+    font-size: 12px;
+}
+.commands {
+    padding: 0;
+}
+.commands li {
+    list-style: none;
+    margin-bottom: 10px;
+    background: #dee2e6;
+    padding: 5px;
+    text-align: center;
+    border-radius: 15px;
+    position: relative;
+}
+.commands li .delete {
+    position: absolute;
+    right: 0;
+    top: 3px;
+}
+.commands li:after {
+    content: ' ';
+    width: 2px;
+    background: #dee2e6;
+    height: 10px;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+}
+.commands li.addcommand {
+    margin-bottom: 60px;
+}
+.commands li.addcommand:after {
+    background: white;
+}
+.m-fadeOut {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 1000ms, opacity 1000ms;
+}
+.m-fadeIn {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 1000ms;
+}
+.m-popOut {
+    height: 0px;
+    opacity: 0;
+    display: none;
+    transition: height 0s ease 1000ms, opacity 1000ms;
+}
+.m-popIn {
+    height: inherit;
+    opacity: 1;
+    transition: height 0s ease 0s, opacity 1000ms;
+}
+.navbar img {
+    max-width: 100%;
+    display: block;
+}
+.fa-arrow-up.arrow-right {
+    transform: rotate(45deg);
+   /* Equal to rotateZ(45deg) */
+}
+.fa-arrow-up.arrow-left {
+    transform: rotate(-45deg);
+   /* Equal to rotateZ(45deg) */
+}

@@ -1,23 +1,35 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const port = 3000;
+let publicUrl = `http://localhost:${port}`;
+if(process.env.GITPOD_WORKSPACE_URL){
+  const [schema, host] = process.env.GITPOD_WORKSPACE_URL.split('://');
+  publicUrl = `${port}-${host}`;
+}
 
 module.exports = {
-  entry: './src/js/index.js', 
+  entry: [
+    './src/js/app.js'
+  ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'public'),
+    publicPath: '/'
   },
   module: {
-    loaders: [
-        { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
+    rules: [
         {
-          test: /\.scss$/,
-          use: [{
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: ['babel-loader']
+        },
+        {
+          test: /\.(css|scss)$/, use: [{
               loader: "style-loader" // creates style nodes from JS strings
           }, {
               loader: "css-loader" // translates CSS into CommonJS
-          }, {
-              loader: "sass-loader" // compiles Sass to CSS
           }]
         }, //css only files
         { 
@@ -30,27 +42,20 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
-    alias: {
-        'jquery': require.resolve('jquery'),
-    }
+    extensions: ['*', '.js']
   },
   devtool: "source-map",
   devServer: {
-    contentBase: './dist',
+    contentBase:  './dist',
+    hot: true,
     disableHostCheck: true,
-    hot: true
+    historyApiFallback: true,
+    public: publicUrl
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      Popper: ['popper.js', 'default'],
-      // In case you imported plugins individually, you must also require them here:
-      Util: "exports-loader?Util!bootstrap/js/dist/util",
-      Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
-    })
+    new HtmlWebpackPlugin({
+        favicon: '4geeks.ico',
+        template: 'template.html'
+    }),
   ]
 };
