@@ -6,7 +6,7 @@ import {Home} from './home.jsx';
 import {LevelSelect} from './levels.jsx';
 import {CommandsSelect} from './commands.jsx';
 import {RequestSent} from './sent.jsx';
-import {TheMenu} from './menu.jsx';
+import {RequestSent as TheMenu} from './menu.jsx';
 
 import GameActions from '../actions/GameActions.js';
 
