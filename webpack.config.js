@@ -1,17 +1,24 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const port = 3000;
-let publicUrl = `http://localhost:${port}`;
+let publicUrl = `ws://localhost:${port}/ws`;
+//only for gitpod
 if(process.env.GITPOD_WORKSPACE_URL){
   const [schema, host] = process.env.GITPOD_WORKSPACE_URL.split('://');
-  publicUrl = `${port}-${host}`;
+  publicUrl = `wss://${port}-${host}/ws`;
+}
+//only for codespaces
+if(process.env.CODESPACE_NAME){
+  publicUrl = `wss://${process.env.CODESPACE_NAME}-${port}.preview.app.github.dev/ws`;
 }
 
 module.exports = {
   entry: [
-    './src/js/app.js'
+    './src/js/index.js'
   ],
   output: {
     filename: 'bundle.js',
@@ -26,7 +33,7 @@ module.exports = {
           use: ['babel-loader']
         },
         {
-          test: /\.(css|scss)$/, use: [{
+          test: /\.(css)$/, use: [{
               loader: "style-loader" // creates style nodes from JS strings
           }, {
               loader: "css-loader" // translates CSS into CommonJS
@@ -42,17 +49,26 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ['*', '.js', '.jsx']
   },
   devtool: "source-map",
   devServer: {
-    contentBase:  './dist',
+    port,
     hot: true,
-    disableHostCheck: true,
+    allowedHosts: "all",
     historyApiFallback: true,
-    public: publicUrl
+    static: {
+      directory: path.resolve(__dirname, "dist"),
+    },
+    client: {
+      webSocketURL: publicUrl
+    },
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    // new ESLintPlugin({
+    //   files: path.resolve(__dirname, "src"),
+    // }),
     new HtmlWebpackPlugin({
         favicon: '4geeks.ico',
         template: 'template.html'
