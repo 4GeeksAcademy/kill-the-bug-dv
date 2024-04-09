@@ -1651,7 +1651,7 @@ __webpack_require__.r(__webpack_exports__);
         return item.slug;
       })
     };
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post('https://playground.4geeks.com/apis/kill-the-bug/add_attempt', JSON.stringify(dataToSend), {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().post('https://sample-service-name-0clb.onrender.com/apis/kill-the-bug/add_attempt', JSON.stringify(dataToSend), {
       headers: {
         'Content-Type': 'text/plain'
       }
@@ -1669,7 +1669,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   getAvailableLevels: function getAvailableLevels() {
-    axios__WEBPACK_IMPORTED_MODULE_2___default().get('https://playground.4geeks.com/apis/kill-the-bug/get_levels').then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default().get('https://sample-service-name-0clb.onrender.com/apis/kill-the-bug/get_levels').then(function (response) {
       if (response.data.code == 200) {
         _dispatcher_js__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch({
           actionType: 'SAVE_AVAILABLE_LEVELS',
@@ -36268,7 +36268,7 @@ function _typeof(o) {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("ae43538b5ba42438195b")
+/******/ 		__webpack_require__.h = () => ("4357cf1df22c2ae9b196")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
