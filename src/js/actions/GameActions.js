@@ -37,7 +37,7 @@ export default {
         return item.slug;
       })
     }
-    axios.post('https://playground.4geeks.com/apis/kill-the-bug/add_attempt', JSON.stringify(dataToSend),{
+    axios.post('https://sample-service-name-0clb.onrender.com/apis/kill-the-bug/add_attempt', JSON.stringify(dataToSend),{
       headers: { 'Content-Type': 'text/plain' }
     })
     .then(function (response) {
@@ -58,7 +58,7 @@ export default {
     
   },
   getAvailableLevels: () => {
-    axios.get('https://playground.4geeks.com/apis/kill-the-bug/get_levels')
+    axios.get('https://sample-service-name-0clb.onrender.com/apis/kill-the-bug/get_levels')
     .then(function (response) {
       if(response.data.code==200)
       {
